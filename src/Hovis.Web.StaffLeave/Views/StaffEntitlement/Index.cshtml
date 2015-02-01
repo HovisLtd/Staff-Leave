@@ -1,0 +1,58 @@
+﻿@using System.Globalization
+@using Hovis.Web.StaffLeave.Models
+@model IEnumerable<Hovis.Web.StaffLeave.Models.EditStaffEntitlementViewModel>
+@{
+    Layout = "~/Views/Shared/_StaffLeaveLayout.cshtml";
+}
+
+@if (TempData.ContainsKey("alert"))
+{
+    var alert = TempData["alert"] as Alert;
+    var alertClass = "alert-" + alert.Type;
+
+    <div style="padding: 1em">
+
+        <div class="alert alert-dismissible @alertClass" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+            @if (alert.Title != null)
+            {
+                <strong>@alert.Title</strong>
+                <br />
+            }
+            @alert.Message
+        </div>
+    </div>
+}
+<h2>Manage Staff Holiday Entitlement</h2>
+
+<hr />
+<table class="table table-striped ">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Period</th>
+            <th>Standard Entitlement</th>
+            <th>Adjustments +/-</th>
+            <th>Days Remaining</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.EmployeeFirstName @user.EmployeeLastName <br /> <small>@user.EmployeeEmailAddress</small></td>
+                <td>@user.StaffEntitlement.PeriodStart <br /> @user.StaffEntitlement.PeriodEnd </td>
+                <td>@user.StaffEntitlement.StandardEntitlement</td>
+                <td></td>
+                <td></td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "StaffEntitlement", new { id = user.EmployeeNumber }, new { @class = "btn btn-primary btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

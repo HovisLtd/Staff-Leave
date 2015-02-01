@@ -1,0 +1,53 @@
+﻿@using Hovis.Web.Core
+<!DOCTYPE html>
+<html lang="en" ng-app=''>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>Hovis</title>
+
+    <!-- Bootstrap core CSS -->
+    @Styles.Render("~/Content/css/all")
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <div class='header-box'>
+        <img src="/Content/img/hovis-logo-small.png">
+        <h1>
+            Holiday Requests
+        </h1>
+        <div class='logout'>
+
+            @if (Request.IsAuthenticated)
+            {
+                <span>
+                    Logged in as @this.CurrentGoogleUser().EmailAddress
+                    |
+                </span>
+                <span class='glyphicon glyphicon-log-out'></span> @Html.ActionLink("Logout from hovis.co.uk", "LogOut", "Authentication")
+            }
+        </div>
+    </div>
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-md-10 col-md-offset-1 hovis-panel mainPanel panel'>
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

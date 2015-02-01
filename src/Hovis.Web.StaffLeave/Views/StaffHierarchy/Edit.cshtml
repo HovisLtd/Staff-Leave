@@ -1,0 +1,68 @@
+﻿@model Hovis.Data.Models.ADUser
+@{
+    Layout = "~/Views/Shared/_StaffLeaveLayout.cshtml";
+}
+<br />
+<ol class="breadcrumb">
+    <li><a href="#">@Html.ActionLink("Home", "Index", "Home")</a></li>
+    <li><a href="#">@Html.ActionLink("Staff Entitlement", "Index", "StaffEntitlement")</a></li>
+    <li class="active">@Model.FirstName</li>
+</ol>
+<br />
+
+<fieldset>
+    <legend>Alex Brown</legend>
+
+    <div class="row">
+
+        <!-- Nav tabs -->
+        @*<ul class="nav nav-tabs" role="tablist">
+                <li class="active">
+                    <a href="#home" role="tab" data-toggle="reportsTo">Reports To</a>
+                </li>
+                <li>
+                    <a href="#profile" role="tab" data-toggle="suboordinates">Suboordinates</a>
+                </li>
+            </ul>*@
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="reportsTo">
+
+                <div style="padding-top: 20px">
+                    <p>Add one or more employee id's for employees xxx reports to</p>
+                    <br />
+                    <div class="input-group col-md-3">
+                        <input type="text" class="form-control" placeholder="Employee number" name="">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Add</button>
+                        </span>
+                    </div>
+                    <small>Can add multiple by separating with comma</small>
+                    <hr />
+                    <div style="margin-top: 40px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1234234</td>
+                                    <td>Sam Jones Longname</td>
+                                    <th>
+                                        <a href="#"><i class="glyphicon glyphicon-trash"></i></a>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="suboordinates">...</div>
+            </div>
+        </div>
+    </div>
+</fieldset>

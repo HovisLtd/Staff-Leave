@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-2">
+        <div class="sidebar-nav">
+            <br />
+            <strong>Admin</strong>
+
+            <ul class="nav nav-list">
+                <li class="">
+                    @Html.ActionLink("Staff Hierarchy", "Index", "StaffHierarchy")
+                </li>
+                <li class="">
+                    @Html.ActionLink("Staff entitlement", "Index", "StaffEntitlement")
+                </li>
+            </ul>
+
+            <hr />
+            <ul class="nav nav-list">
+                <li class=""><a href="/">Home</a></li>
+                <li class="">
+                    @Html.ActionLink("Holiday Requests", "Index", "HolidayRequest")
+                </li>
+                <li class="">
+                    @Html.ActionLink("New Holiday Request", "New", "HolidayRequest")
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-10">
+        @RenderBody()
+    </div><!-- /.box -->
+</div>
+
+@RenderSection("scripts", required: false)

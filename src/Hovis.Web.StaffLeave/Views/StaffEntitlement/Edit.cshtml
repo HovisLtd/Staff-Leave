@@ -1,0 +1,72 @@
+﻿@model Hovis.Web.StaffLeave.Models.EditStaffEntitlementViewModel
+@{
+    Layout = "~/Views/Shared/_StaffLeaveLayout.cshtml";
+}
+<br />
+<ol class="breadcrumb">
+    <li><a href="#">@Html.ActionLink("Home", "Index", "Home")</a></li>
+    <li><a href="#">@Html.ActionLink("Staff Entitlement", "Index", "StaffEntitlement")</a></li>
+    <li class="active">@Model.EmployeeFullName</li>
+</ol>
+
+@using (Html.BeginForm("Post", "StaffEntitlement", new { id = Model.EmployeeNumber }))
+{
+    <h2>@Model.EmployeeFullName</h2>
+    <br />
+
+    @Html.HiddenFor(x => x.EmployeeNumber)
+
+    <fieldset>
+
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#home" role="tab" data-toggle="tab">Standard Entitlement</a></li>
+            <li><a href="#profile" role="tab" data-toggle="tab">Adjustments</a></li>
+        </ul>
+        <br />
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-12">
+                    @Html.LabelFor(x => x.StaffEntitlement.StandardEntitlement)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    @Html.TextBoxFor(x => x.StaffEntitlement.StandardEntitlement, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+
+                    @Html.ValidationMessageFor(x => x.StaffEntitlement.StandardEntitlement)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4">
+                <label for="startDateInput">Period Start</label>
+
+                <div class="form-group form-inline">
+                    @Html.DropDownListFor(x => x.StaffEntitlement.PeriodStartDay, Model.StaffEntitlement.AvailableDays, new { @class = "form-control" })
+
+                    @Html.DropDownListFor(x => x.StaffEntitlement.PeriodStartMonth, Model.StaffEntitlement.AvailableMonths, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <label for="startDateInput">Period End</label>
+
+                <div class="form-group form-inline">
+                    @Html.DropDownListFor(x => x.StaffEntitlement.PeriodEndDay, Model.StaffEntitlement.AvailableDays, new { @class = "form-control" })
+
+                    @Html.DropDownListFor(x => x.StaffEntitlement.PeriodEndMonth, Model.StaffEntitlement.AvailableMonths, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-default" })
+        &nbsp;
+        &nbsp;
+        <button type="submit" class="btn btn-success">Save</button>
+    </fieldset>
+}
